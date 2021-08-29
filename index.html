@@ -2,7 +2,6 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="baidu-site-verification" content="code-8T2lS1ZGPh" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 5.4.0">
@@ -158,14 +157,14 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories">
           
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -212,6 +211,150 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/05/04/qemu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar_self.jpg">
+      <meta itemprop="name" content="Wen peng">
+      <meta itemprop="description" content="分享点滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="在路上">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/05/04/qemu/" class="post-title-link" itemprop="url">qemu</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2021-05-04 14:16:49 / 修改时间：23:36:29" itemprop="dateCreated datePublished" datetime="2021-05-04T14:16:49+08:00">2021-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/qemu/" itemprop="url" rel="index"><span itemprop="name">qemu</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="qemu"><a href="#qemu" class="headerlink" title="qemu"></a>qemu</h1><h2 id="1-QEMU-terms"><a href="#1-QEMU-terms" class="headerlink" title="1. QEMU terms"></a>1. QEMU terms</h2><h2 id="2-QEMU调用"><a href="#2-QEMU调用" class="headerlink" title="2. QEMU调用"></a>2. QEMU调用</h2><pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">Usage: qemu-system-x86_64 [options] [disk_image]
+一般使用[options]：
+-h：帮助
+-version：查看版本
+-M machine：选择虚拟机,-machine -h可查看支持的虚拟机
+-cpu model：选择cpu型号，-cpu help
+-smp [cpus&#x3D;]n[,cores&#x3D;cores][,threads&#x3D;threads][,dies&#x3D;dies][,sockets&#x3D;sockets][,maxcpus&#x3D;maxcpus]：指定cpu个数、核数、线程数
+-m [size&#x3D;]megs[,slots&#x3D;n,maxmem&#x3D;size]：指定内存大小，默认为128MiB，可以通过后缀M或G指定megs单位
+-boot：启动选项，软盘（a）、硬盘（c）、光驱（D）、网卡（n），默认是从硬盘启动
+# 指定启动的linux内核：使用以下选项时，能直接指定启动的内核而不必按照在磁盘镜像中，对测试内核节省了时间
+-kernel bzImage:使用bzImage作为启动的内核镜像
+-append cmdline：启动内核时传递的参数
+-initrd file：使用file文件作为初始化ram文件系统
+-initrd &quot;file1 arg&#x3D;foo,file2&quot;
+-dtb file：设备树文件
+# 指定驱动器
+-drive option[,option[,option[,...]]]：定义一个新的驱动器，有效选项如下：
+ file&#x3D;file：定义镜像文件
+ if&#x3D;interface：该选项定义驱动被连接的类型，ide, scsi, sd, mtd, floppy, pflash, virtio.
+ bus&#x3D;bus,unit&#x3D;unit：这些选项定义连接的驱动器定义总线数字和单位ID。
+ index&#x3D;index：此选项定义驱动器连接在一个给定的接口类型列表中可用的连接器使用索引。（可能为盘符）
+ media&#x3D;media：cdrom还是disk
+ cyls&#x3D;c,heads&#x3D;h,secs&#x3D;s[,trans&#x3D;t]：选项同‘-hdachs’
+ snapshot&#x3D;snapshot：值为&quot;on&quot; or &quot;off&quot;，允许被给的驱动器使能snapshot
+ cache&#x3D;cache：值为&quot;none&quot;, &quot;writeback&quot;, or &quot;writethrough&quot; ，控制主机缓存用于访问数据块
+ aio&#x3D;aio：值为&quot;threads&quot;, or &quot;native&quot; ，选择线程基于磁盘IO还是本地linux IO
+ format&#x3D;format：指定磁盘格式，建议使用raw
+ serial&#x3D;serial：给设备指定序列号（可能是串口，也可能和串口无关）
+ addr&#x3D;addr：指定PCI地址（仅仅：if&#x3D;virtio）
+    默认情况下，连续写入缓存被用于所有的块设备，这意味着主机页缓存将被用于读和写数据，但是仅仅当数据被报知被写入存储子系统，写通知将被发送到客户机。
+    Instead of ‘-cdrom’ you can use:qemu -drive file&#x3D;file,index&#x3D;2,media&#x3D;cdrom
+    Instead of ‘-hda’, ‘-hdb’, ‘-hdc’, ‘-hdd’, you can use:
+	qemu -drive file&#x3D;file,index&#x3D;0,media&#x3D;disk
+	qemu -drive file&#x3D;file,index&#x3D;1,media&#x3D;disk
+	qemu -drive file&#x3D;file,index&#x3D;2,media&#x3D;disk
+	qemu -drive file&#x3D;file,index&#x3D;3,media&#x3D;disk
+# 显示
+-nographic：只使用命令行
+
+-fda file：
+-fdb file：使用文件作为软盘，可以使用主机的“&#x2F;dev&#x2F;fd0”
+-hda file：硬盘选项
+-hdb file：硬盘选项
+-hdc file：硬盘选项
+-hdd file：硬盘选项
+-cdrom file：光驱选项
+
+
+
+-snapshot：快照功能
+-no-fd-bootchk：禁止启动检测软盘
+-numar opts：模拟一个多节点的非统一内存访问，如果cpu内存都被忽略，资源平分
+-nographic：通常，QEMU使用SDL显示VGA输出，使用这个选项，使qemu成为简单的命令行应用程序
+-k language：键盘布局，默认是en-us
+-audio-help：声音子系统帮助显示，驱动列表，可调参数等
+-soundhw card1,card2,... or -soundhw all：使能音频并选择声卡
+-localtime：设置真实时钟为本地时钟，默认是UTC时间
+-full-screen：全屏
+-pidfile file：存储qemu进程PID到文件，用于脚本启动
+-daemonize：初始化后QEMU进程长期驻留，qemu将不从标准IO分离，除非他准备连接到他的设备中的起其中一个。这个选项用于外部程序启动qemu
+而不用去初始化静态条件。
+-option-rom file：加载一个可选ROM文件内容，用于加载像EtherBoot这样的东西。
+-mtdblock file：<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h2><p>CPU：中央处理器单元，是个大的概念集合，包含了实际处理指令的物理核core、内存控制器、PCIe控制器等。</p>
+<p>core：实际执行一条控制流的硬件执行单元，其含有独立的一整套寄存器。</p>
+<p>die：指处理器生产过程中从晶圆上切割下来的一个个小方块，电路逻辑被光刻机刻在上面，一个CPU可以包含一个及以上的die，一个die可以含有一个及以上的core。</p>
+<p>package：指包含一个或多个die的塑料/陶瓷外壳和镀金的触点，以配合你的主板。主板上的每个CPU插槽（socket），只能接受一个package。</p>
+<h2 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://qemu-project.gitlab.io/qemu/">官方手册</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/04/18/hexo/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -235,10 +378,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2021-04-18 13:23:33 / 修改时间：21:13:17" itemprop="dateCreated datePublished" datetime="2021-04-18T13:23:33+08:00">2021-04-18</time>
+      <time title="创建时间：2021-04-18 13:23:33" itemprop="dateCreated datePublished" datetime="2021-04-18T13:23:33+08:00">2021-04-18</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-05-04 14:16:31" itemprop="dateModified" datetime="2021-05-04T14:16:31+08:00">2021-05-04</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -284,7 +433,7 @@ $ hexo server
 $ hexo deploy
 
 # 清除缓存
-hexo clena<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+hexo clean<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <h2 id="2-主题next的配置"><a href="#2-主题next的配置" class="headerlink" title="2 主题next的配置"></a>2 主题next的配置</h2><h3 id="1-启用分类-categories"><a href="#1-启用分类-categories" class="headerlink" title="1 启用分类(categories)"></a>1 启用分类(categories)</h3><p>【1】：新建对应的页面，执行命令后会在source\categories下生产index.md文件</p>
 <pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">$ hexo new page &quot;categories&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
